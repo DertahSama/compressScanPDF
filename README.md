@@ -67,3 +67,25 @@ with open(new_file, "wb") as f:
     f.write(img2pdf.convert(glob.glob("./RAW/alter/*.*")))
 ```
 但是这个包在处理tiff文件时候每个文件都会弹出一行提示，几百行很烦人！我之前改了该包的源代码把这个提示干掉了，但是现在忘了在哪里改的了，等我记起来了再在这里记录罢。
+
+### 选页
+压缩pdf的时候会出现只选取一些页面保留彩色、其它页面变纯黑白的情况。这里仿照通用的选页语法写了个小函数，可以将输入的形如
+> 1-3,15,20-22
+
+的文本转化为页码数组
+```
+[1,2,3,15,20,21,22]
+```
+用了两次`.split()`方法而已：
+```python
+def getPages(str):
+    pages_cache=str.split(',')
+    the_pages=[]
+    for item in pages_cache:
+        item_cache=item.split('-')
+        if len(item_cache)==2: # 此时item_cache形如['20','22']
+            the_pages.extend(range(int(item_cache[0]),int(item_cache[1])+1))
+        else: # 此时item_cache形如['15']
+            the_pages.append(int(item_cache[0]))
+    return the_pages
+```
