@@ -1,4 +1,5 @@
 这是一个用来压缩扫描出的PDF文档的python小脚本。压缩成纯黑白（1bit色深）的效果最好。
+![Snipaste_2023-03-16_20-24-01](https://user-images.githubusercontent.com/74524914/225616311-c59e8800-59c8-440f-9087-6a9c5bf74d4e.jpg)
 
 >这里权作自己的思路笔记了~
 
